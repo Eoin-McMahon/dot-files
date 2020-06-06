@@ -6,7 +6,7 @@
 "  |________|  '.__.'  [___] [___||__] [\__) )        \_/      [___] [___||__||__] [___]    '.___.' 
 "  ================================================================================================
 
-" Make sure you install vim plug to get the pluggins working properly, to do this simply run:
+" Make sure you install vim-plug to get the pluggins working properly, to do this simply run:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 "  PLUGINS: To install, add a plugin here and use command :PlugInstall, exit and reopen and plugins will be installed.
