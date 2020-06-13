@@ -119,7 +119,12 @@ nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" Zen mode toggle
 noremap z :Goyo<CR>
 noremap Z :Goyo!<CR>
+
+" when in insert mode; space space will switch to the most recent buffer (good when working with two files)
+noremap <leader><leader> :e #<CR>
+
 " Set nerdtree divider to empty character to remove the lines
 set fillchars=
