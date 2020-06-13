@@ -18,14 +18,15 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'makerj/vim-pdf'
 call plug#end()
 " Colour Scheme
 set termguicolors
 let ayucolor="dark"
 colorscheme ayu
-
-" Airline theme
-"let g:airline_theme='simple'
 
 " Numbering
 set number relativenumber nu
@@ -98,9 +99,27 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_github=1
 
+" FZF bindings
+" search through files in directory
+map <C-p> <Esc><Esc>:Files<CR>
+" Search through lines in buffer
+noremap <C-f> <Esc><Esc>:BLines<CR>
+" Search through git tracked files. (handy since it ignores build files etc)
+noremap <C-g> <Esc><Esc>:GFiles<CR>
+"Make tab go to the matching pair item
+nnoremap <Tab> %
+" map r to redo
+noremap r <C-r>
+" map ctrl r to scroll up, since scroll down is ctrl e
+noremap <C-r> <C-y>
 
-" Hide tildes on empty lines (This has to be last in the rc otherwise it gets overridden)
-"highlight EndOfBuffer ctermfg=NONE ctermbg=NONE
-"
+let mapleader=" "
+" Jump to definition
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+noremap z :Goyo<CR>
+noremap Z :Goyo!<CR>
 " Set nerdtree divider to empty character to remove the lines
 set fillchars=
