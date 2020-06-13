@@ -1,12 +1,13 @@
-"   _______D             _                        ____   ____    _
-"  |_   __  |           (_)                      |_  _| |_  _|  (_)
-"    | |_ \_|   .--.    __    _ .--.    .--.       \ \   / /    __    _ .--..--.    _ .--.   .---.
-"    |  _| _  / .'`\ \ [  |  [ `.-. |  ( (`\]       \ \ / /    [  |  [ `.-. .-. |  [ `/'`\] / /'`\]
-"   _| |__/ | | \__. |  | |   | | | |   `'.'.        \ ' /      | |   | | | | | |   | |     | \__.
-"  |________|  '.__.'  [___] [___||__] [\__) )        \_/      [___] [___||__||__] [___]    '.___.'
-"  ================================================================================================
+"   EOIN'S VIMRC
+" ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
-"  PLUGINS
+" TO NOTE: I use vim-plug as my plugin manager, the config may also appear different dependent on machine
+" An example is nerdtree which looks very different between linux and macos
+
+" ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+"   PLUGINS
+" ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
 filetype plugin on
 call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
@@ -23,6 +24,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'makerj/vim-pdf'
 call plug#end()
+
+" ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+"   CONFIGURATION
+" ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
 " Colour Scheme
 set termguicolors
 let ayucolor="dark"
@@ -40,10 +46,10 @@ endif
 " Automatic Syntax for code
 syntax on
 set laststatus=2
+
 " Dont wrap long lines
 set nowrap
 
-" Be smart when using tabs ;)
 set smarttab
 " Use spaces instead of tabs
 set expandtab
@@ -54,7 +60,6 @@ set tabstop=4
 " Linebreak on 500 characters
 set lbr
 set tw=500
-set wrap "Wrap lines
 set autoindent smartindent "Smart automatic indent
 
 " Don't create swap files
@@ -62,6 +67,13 @@ set noswapfile
 
 " Search iteratively
 set incsearch
+
+" Set nerdtree divider to empty character to remove the lines
+set fillchars=
+
+" ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+"   KEY MAPPINGS AND REMAPPINGS
+" ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 "NERDTREE SETTINGS {{
 map <C-n> :NERDTreeToggle<CR>
@@ -96,24 +108,29 @@ noremap <Right> <Nop>
 
 " Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" Markdown preview. TODO this is broken, keep an eye on github issues
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_github=1
 
-" FZF bindings
+" FZF bindings {
 " search through files in directory
 map <C-p> <Esc><Esc>:Files<CR>
 " Search through lines in buffer
 noremap <C-f> <Esc><Esc>:BLines<CR>
 " Search through git tracked files. (handy since it ignores build files etc)
 noremap <C-g> <Esc><Esc>:GFiles<CR>
+" }
+
 "Make tab go to the matching pair item
 nnoremap <Tab> %
-" map r to redo
+" map r to redo[
 noremap r <C-r>
 " map ctrl r to scroll up, since scroll down is ctrl e
 noremap <C-r> <C-y>
 
 let mapleader=" "
+
 " Jump to definition
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
@@ -122,9 +139,8 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Zen mode toggle
 noremap z :Goyo<CR>
 noremap Z :Goyo!<CR>
+let g:goyo_width = 110
 
 " when in insert mode; space space will switch to the most recent buffer (good when working with two files)
 noremap <leader><leader> :e #<CR>
 
-" Set nerdtree divider to empty character to remove the lines
-set fillchars=
