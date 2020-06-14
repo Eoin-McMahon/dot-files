@@ -23,6 +23,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'makerj/vim-pdf'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 " ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
@@ -136,10 +137,16 @@ nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" Vim Commentary
+nmap <leader>c <Plug>Commentary
+xmap <leader>c <Plug>Commentary
+omap <leader>c <Plug>Commentary
+nmap <leader>cc <Plug>CommentaryLine
+
 " Zen mode toggle
 noremap z :Goyo<CR>
 noremap Z :Goyo!<CR>
-let g:goyo_width = 110
+let g:goyo_width = 140
 
 " when in insert mode; space space will switch to the most recent buffer (good when working with two files)
 noremap <leader><leader> :e #<CR>
