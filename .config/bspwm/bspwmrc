@@ -1,0 +1,42 @@
+#! /bin/sh
+
+# Keybind manager
+sxhkd &
+# Sync Xresources
+xrdb ~/.Xresources
+# Set wallpaper
+nitrogen --restore &
+# Killall instances of lemonbar before creating a new one
+killall lemonbar &
+~/./panel.sh &
+# Hide lemonbar when in fullscreen mode
+~/./fullscreenfix.sh &
+compton &
+/usr/bin/dunst &
+# Make key repeat faster
+xset r rate 200 50 & 
+
+bspc monitor -d  • • • • • • • • • •
+
+
+bspc config border_width     4  
+#bspc config normal_border_color "#3F51B5"
+bspc config focused_border_color "#689D6A"
+#bspc config focused_border_color "#33B679"
+bspc config window_gap       40
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle    true
+bspc config paddingless_monocle    true
+
+
+bspc rule -a spotify desktop='^4' follow=on focus=on
+bspc rule -a kitty desktop='^2' follow=on focus=on
+bspc rule -a Slack desktop='^5'
+bspc rule -a firefox desktop='^1' follow=on focus=on
+bspc rule -a code-oss desktop='^3' follow=on focus=on
+bspc rule -a Emacs desktop='^3' state=tiled follow=on focus=on
+bspc rule -a Spotify  desktop='^4' follow=on focus=on
+bspc rule -a Steam desktop='^6' follow=on focus=on
+bspc rule -a discord desktop='^5' follow=on focus=on
