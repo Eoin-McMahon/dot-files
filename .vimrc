@@ -16,6 +16,7 @@ Plug 'connorholyday/vim-snazzy'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Yggdroot/indentLine'
 Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'JamshedVesuna/vim-markdown-preview'
@@ -24,6 +25,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'makerj/vim-pdf'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+Plug 'lifepillar/vim-solarized8'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
@@ -32,17 +40,33 @@ call plug#end()
 
 " Colour Scheme
 set termguicolors
-let ayucolor="dark"
-colorscheme ayu
 
+set background=dark
+colorscheme gruvbox
+" let g:gruvbox_sign_column='dark1'
+" set bg=dark
+highlight SignColumn ctermbg=NONE cterm=NONE guibg=#3c3836 gui=NONE
+
+set synmaxcol=0
 " Numbering
 set number relativenumber nu
+
+highlight CursorLine guibg=#3c3836
+set cursorline
+autocmd InsertEnter * highlight CursorLine guifg=white guibg=#689d6a ctermfg=white ctermbg=blue 
+autocmd InsertEnter * highlight CursorLineNr guifg=white guibg=#689d6a ctermfg=white ctermbg=blue 
+autocmd InsertLeave * highlight CursorLine guifg=white guibg=#3c3836 ctermfg=white ctermbg=darkblue
+autocmd InsertLeave * highlight CursorLineNr guifg=white guibg=#3c3836 ctermfg=white ctermbg=blue 
 
 "Disable droplet beep sound (i.e end of file and on command)
 set noerrorbells visualbell t_vb=
 if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
+
+" Update time for signify
+autocmd ColorScheme * highlight! link SignColumn LineNr
+set updatetime=100
 
 " Automatic Syntax for code
 syntax on
@@ -57,6 +81,8 @@ set expandtab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+
+let g:ycm_semantic_triggers = { 'cpp': [ 're!.' ] }
 
 " Linebreak on 500 characters
 set lbr
@@ -77,17 +103,20 @@ set fillchars=
 " ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 "NERDTREE SETTINGS {{
+" Base where vim was opened
 map <C-n> :NERDTreeToggle<CR>
+" Location of file in buffer
+" map <C-n> :NERDTreeFind<CR>
 " Close NERDtree when files was opened
 let NERDTreeQuitOnOpen=1
 " Show NERDTree bookmarks
-let NERDTreeShowBookmarks=1
+" let NERDTreeShowBookmarks=1
 " Display arrows instead of ascii art in NERDTree
 let NERDTreeDirArrows=1
 " Change current working directory based on root directory in NERDTree
 let NERDTreeChDirMode=2
 " Start NERDTree in minimal UI mode (No help lines)
-let NERDTreeMinimalUI=1
+"let NERDTreeMinimalUI=1
 let g:indentLine_char = '┊'
 let g:NERDTreeWinSize=40
 
@@ -123,6 +152,7 @@ noremap <C-f> <Esc><Esc>:BLines<CR>
 noremap <C-g> <Esc><Esc>:GFiles<CR>
 " }
 
+nnoremap <BS> i<BS><Esc>`^
 "Make tab go to the matching pair item
 nnoremap <Tab> %
 " map r to redo[
@@ -136,18 +166,25 @@ let mapleader=" "
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
+"Youcompleteme fix
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " Vim Commentary
 nmap <leader>c <Plug>Commentary
 xmap <leader>c <Plug>Commentary
 omap <leader>c <Plug>Commentary
-nmap <leader>cc <Plug>CommentaryLine
+nmap <leader>cl <Plug>CommentaryLine<CR>
 
 " Zen mode toggle
 noremap z :Goyo<CR>
 noremap Z :Goyo!<CR>
 let g:goyo_width = 140
 
+cabbrev W w
+cabbrev Q q
+
 " when in insert mode; space space will switch to the most recent buffer (good when working with two files)
 noremap <leader><leader> :e #<CR>
 
+au BufNewFile,BufRead Jenkinsfile setf groovy
+:set mouse=a
+au BufNewFile,BufRead Jenkinsfile setf groovy
